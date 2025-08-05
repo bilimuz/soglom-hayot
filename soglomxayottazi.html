@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sog'lom Hayot - Sog'lom Turmush Tarzi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .fade-in { animation: fadeIn 1s ease-in; }
+    .slide-in { animation: slideIn 0.8s ease-out; }
+    .pulse { animation: pulse 2s infinite; }
+    .bounce { animation: bounce 1.5s infinite; }
+    .hover-scale { transition: transform 0.3s, box-shadow 0.3s; }
+    .hover-scale:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 100; }
+    .modal-content { background: white; margin: 8% auto; padding: 24px; width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .input-focus { transition: all 0.3s; }
+    .input-focus:focus { border-color: #10B981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.3); }
+    .button-primary { transition: background-color 0.3s, transform 0.3s; }
+    .button-primary:hover { background-color: #059669; transform: translateY(-2px); }
+    .card { transition: all 0.3s; }
+    .card:hover { background-color: #f9fafb; }
+    body { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-gradient-to-r from-green-600 to-green-800 text-white p-6 fixed w-full top-0 z-50 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <img src="https://via.placeholder.com/40" alt="Logo" class="w-10 h-10 rounded-full">
+        <h1 class="text-3xl font-extrabold">Sog'lom Hayot</h1>
+      </div>
+      <div class="flex items-center space-x-6">
+        <select id="language" class="bg-green-700 p-2 rounded text-white focus:outline-none hover:bg-green-600 transition-colors duration-200">
+          <option value="uz">O'zbek</option>
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
+        <a href="#home" class="hover:text-green-200 transition-colors duration-200">Bosh sahifa</a>
+        <a href="#nutrition" class="hover:text-green-200 transition-colors duration-200">Ovqatlanish</a>
+        <a href="#exercise" class="hover:text-green-200 transition-colors duration-200">Mashqlar</a>
+        <a href="#bmi" class="hover:text-green-200 transition-colors duration-200">BMI Kalkulyator</a>
+        <a href="#motivation" class="hover:text-green-200 transition-colors duration-200">Motivatsiya</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-24 pb-16 bg-gradient-to-b from-green-100 to-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-5xl font-extrabold mb-6 fade-in">Sog'lom Hayotga Xush Kelibsiz!</h2>
+      <p class="text-xl mb-8 slide-in max-w-2xl mx-auto">To'g'ri ovqatlanish, muntazam mashqlar va motivatsiya bilan sog'lom turmush tarzini boshlang.</p>
+      <a href="#nutrition" class="bg-green-600 text-white px-8 py-4 rounded-full button-primary hover-scale pulse">Boshlash</a>
+    </div>
+  </section>
+
+  <!-- Nutrition Section -->
+  <section id="nutrition" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 slide-in">Ovqatlanish Rejasi</h2>
+      <p class="text-lg text-center mb-10 max-w-3xl mx-auto">Sizning maqsadingizga mos shaxsiy ovqatlanish rejasini tuzing. Ozish, semirish yoki sog‘lom turmush tarzini saqlash uchun mos taomlar.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-2xl font-semibold mb-4">Ozish uchun</h3>
+          <p class="mb-4">Kaloriya kamaytirilgan dietalar va sog'lom taomlar.</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Guruch va sabzavotlar bilan tovuq</li>
+            <li>Nonushta uchun yulaf va meva</li>
+            <li>Meva smuzilari (banan, olma)</li>
+            <li>Kundalik 2 litr suv ichish</li>
+            <li>Brokkoli va baliq taomlari</li>
+            <li>Kam yog‘li yogurt</li>
+            <li>Sabzavotli salatlar</li>
+            <li>Quinoa va tovuq go‘shti</li>
+            <li>Zaytun yog‘i bilan taomlar</li>
+            <li>Sho‘rva va salat</li>
+            <li>Kam kaloriyali ichimliklar</li>
+            <li>Apelsin va greypfrut</li>
+            <li>Shirin kartoshka va sabzavotlar</li>
+            <li>Kurka go‘shti va salat</li>
+            <li>Chia urug‘lari smuzisi</li>
+            <li>Tuxum va avokado nonushtasi</li>
+            <li>Kokos suvi ichimliklari</li>
+            <li>Kam yog‘li pishloq</li>
+            <li>Meva va yong‘oq aralashmasi</li>
+            <li>Sabzavotli smuzi</li>
+            <li>Guruch va qovoq bilan tovuq</li>
+            <li>Jo‘xori va banan</li>
+            <li>Meva smuzilari (ananas, kivi)</li>
+            <li>Kundalik 2.5 litr suv</li>
+            <li>Ismaloq va baliq</li>
+            <li>Kam yog‘li sut</li>
+            <li>Sabzavotli salat (pomidor, bodring)</li>
+            <li>Quinoa va sabzavotlar</li>
+            <li>Zaytun yog‘i bilan salat</li>
+            <li>Sho‘rva (sabzavot va tovuq)</li>
+            <li>Kam kaloriyali sharbatlar</li>
+            <li>Limon va apelsin</li>
+            <li>Shirin kartoshka va brokkoli</li>
+            <li>Kurka go‘shti va quinoa</li>
+            <li>Chia va meva smuzisi</li>
+            <li>Tuxum va ismaloq</li>
+            <li>Kokos suvi va meva</li>
+            <li>Kam yog‘li tvorog</li>
+            <li>Yong‘oq va olma</li>
+            <li>Sabzavotli smuzi (kale, banan)</li>
+            <li>Baliq va quinoa</li>
+            <li>Greypfrut va anor</li>
+            <li>Tovuq va guruch</li>
+            <li>Jo‘xori va yong‘oq</li>
+            <li>Sabzavotli sho‘rva</li>
+            <li>Avokado va non</li>
+            <li>Kam yog‘li pishloq va meva</li>
+            <li>Zaytun yog‘i va sabzavotlar</li>
+            <li>Meva va yong‘oq smuzisi</li>
+            <li>Brokkoli va tovuq salati</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-2xl font-semibold mb-4">Semirish uchun</h3>
+          <p class="mb-4">Oqsilga boy taomlar va og‘irlik orttirish strategiyalari.</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Proteinli kokteyllar (yong‘oq yog‘i)</li>
+            <li>Guruch va mol go‘shti</li>
+            <li>Banana va yong‘oq yog‘i</li>
+            <li>Kundalik 5 ta ovqat</li>
+            <li>Tuxum va avokado</li>
+            <li>Makaron va tovuq go‘shti</li>
+            <li>Sut va pishloq</li>
+            <li>Quinoa va baliq</li>
+            <li>Kaloriyali smuzilar</li>
+            <li>Jo‘xori nonushtasi</li>
+            <li>Go‘sht va kartoshka</li>
+            <li>Protein barlari</li>
+            <li>Yong‘oq va meva aralashmasi</li>
+            <li>Makaron va go‘sht sousi</li>
+            <li>Baliq va guruch</li>
+            <li>Tuxum va pishloq</li>
+            <li>Shirin kartoshka va tovuq</li>
+            <li>Avokado va non</li>
+            <li>Sutli smuzilar</li>
+            <li>Go‘sht va sabzavotlar</li>
+            <li>Protein kokteyli va banan</li>
+            <li>Guruch va qo‘zi go‘shti</li>
+            <li>Yong‘oq yog‘i va olma</li>
+            <li>Kundalik 6 ta ovqat</li>
+            <li>Tuxum va ismaloq</li>
+            <li>Makaron va mol go‘shti</li>
+            <li>Sut va tvorog</li>
+            <li>Quinoa va tovuq</li>
+            <li>Kaloriyali meva smuzisi</li>
+            <li>Jo‘xori va yong‘oq</li>
+            <li>Go‘sht va shirin kartoshka</li>
+            <li>Proteinli shirinliklar</li>
+            <li>Yong‘oq va banan aralashmasi</li>
+            <li>Makaron va baliq sousi</li>
+            <li>Baliq va quinoa</li>
+            <li>Tuxum va avokado</li>
+            <li>Shirin kartoshka va mol go‘shti</li>
+            <li>Non va yong‘oq yog‘i</li>
+            <li>Sutli kokteyl</li>
+            <li>Go‘sht va guruch</li>
+            <li>Protein bar va meva</li>
+            <li>Kaloriyali salat</li>
+            <li>Tovuq va kartoshka</li>
+            <li>Quinoa va sabzavotlar</li>
+            <li>Baliq va shirin kartoshka</li>
+            <li>Tuxum va non</li>
+            <li>Sut va yong‘oq</li>
+            <li>Makaron va tovuq sousi</li>
+            <li>Go‘sht va quinoa</li>
+            <li>Avokado va meva smuzisi</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-2xl font-semibold mb-4">Sog'lom taomlar</h3>
+          <p class="mb-4">Vitamin va minerallarga boy taomlar ro‘yxati.</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Apelsin va olma</li>
+            <li>Brokkoli va qovoq</li>
+            <li>Quinoa va guruch</li>
+            <li>Zaytun yog‘i</li>
+            <li>Baliq va dengiz mahsulotlari</li>
+            <li>Kam yog‘li yogurt</li>
+            <li>Kokos suvi</li>
+            <li>Kurka go‘shti</li>
+            <li>Shirin kartoshka</li>
+            <li>Chia urug‘lari</li>
+            <li>Meva smuzilari</li>
+            <li>Sabzavotli salatlar</li>
+            <li>Tuxum va avokado</li>
+            <li>Greypfrut va anor</li>
+            <li>Quinoa va tovuq</li>
+            <li>Zaytun yog‘i bilan salat</li>
+            <li>Jo‘xori va meva</li>
+            <li>Kam yog‘li pishloq</li>
+            <li>Baliq va guruch</li>
+            <li>Sabzavotli sho‘rva</li>
+            <li>Ananas va kivi</li>
+            <li>Ismaloq va qovoq</li>
+            <li>Guruch va quinoa</li>
+            <li>Zaytun yog‘i bilan taom</li>
+            <li>Dengiz mahsulotlari va salat</li>
+            <li>Kam yog‘li sut</li>
+            <li>Kokos suvi va meva</li>
+            <li>Kurka go‘shti va sabzavotlar</li>
+            <li>Shirin kartoshka va tovuq</li>
+            <li>Chia va meva smuzisi</li>
+            <li>Meva va yong‘oq</li>
+            <li>Sabzavotli salat (pomidor, bodring)</li>
+            <li>Tuxum va ismaloq</li>
+            <li>Anor va greypfrut</li>
+            <li>Quinoa va baliq</li>
+            <li>Zaytun yog‘i va sabzavotlar</li>
+            <li>Jo‘xori va banan</li>
+            <li>Kam yog‘li tvorog</li>
+            <li>Baliq va shirin kartoshka</li>
+            <li>Sabzavotli smuzi</li>
+            <li>Apelsin va kivi</li>
+            <li>Brokkoli va guruch</li>
+            <li>Quinoa va tovuq salati</li>
+            <li>Zaytun yog‘i va meva</li>
+            <li>Tuxum va sabzavotlar</li>
+            <li>Kam yog‘li pishloq va non</li>
+            <li>Sabzavotli sho‘rva va salat</li>
+            <li>Meva va yong‘oq smuzisi</li>
+            <li>Baliq va avokado</li>
+            <li>Kurka go‘shti va guruch</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <button onclick="openMealPlanModal()" class="bg-green-600 text-white px-6 py-3 rounded-full button-primary hover-scale">Reja Tuzish</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exercise Section -->
+  <section id="exercise" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 slide-in">Mashqlar Dasturi</h2>
+      <p class="text-lg text-center mb-10 max-w-3xl mx-auto">Sog‘lom bo‘lish uchun kundalik mashqlar dasturini sinab ko‘ring. Kardio va kuch mashqlari bilan tanishing.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-2xl font-semibold mb-4">Kardio Mashqlar</h3>
+          <p class="mb-4">Yurak sog‘ligini mustahkamlash uchun mashqlar.</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Yugurish (30 daqiqa)</li>
+            <li>Velosiped haydash (45 daqiqa)</li>
+            <li>Suzish (20 daqiqa)</li>
+            <li>Arqon sakrash (15 daqiqa)</li>
+            <li>Tez yurish (40 daqiqa)</li>
+            <li>Zumba raqsi (30 daqiqa)</li>
+            <li>Interval yugurish (20 daqiqa)</li>
+            <li>Elliptik trenajor (30 daqiqa)</li>
+            <li>Aerobika (25 daqiqa)</li>
+            <li>Schayqali yurish (35 daqiqa)</li>
+            <li>Yugurish (35 daqiqa)</li>
+            <li>Velosiped haydash (50 daqiqa)</li>
+            <li>Suzish (25 daqiqa)</li>
+            <li>Arqon sakrash (20 daqiqa)</li>
+            <li>Tez yurish (45 daqiqa)</li>
+            <li>Zumba raqsi (35 daqiqa)</li>
+            <li>Interval yugurish (25 daqiqa)</li>
+            <li>Elliptik trenajor (35 daqiqa)</li>
+            <li>Aerobika (30 daqiqa)</li>
+            <li>Schayqali yurish (40 daqiqa)</li>
+            <li>Yugurish (40 daqiqa)</li>
+            <li>Velosiped haydash (55 daqiqa)</li>
+            <li>Suzish (30 daqiqa)</li>
+            <li>Arqon sakrash (25 daqiqa)</li>
+            <li>Tez yurish (50 daqiqa)</li>
+            <li>Zumba raqsi (40 daqiqa)</li>
+            <li>Interval yugurish (30 daqiqa)</li>
+            <li>Elliptik trenajor (40 daqiqa)</li>
+            <li>Aerobika (35 daqiqa)</li>
+            <li>Schayqali yurish (45 daqiqa)</li>
+            <li>Yugurish (45 daqiqa)</li>
+            <li>Velosiped haydash (60 daqiqa)</li>
+            <li>Suzish (35 daqiqa)</li>
+            <li>Arqon sakrash (30 daqiqa)</li>
+            <li>Tez yurish (55 daqiqa)</li>
+            <li>Zumba raqsi (45 daqiqa)</li>
+            <li>Interval yugurish (35 daqiqa)</li>
+            <li>Elliptik trenajor (45 daqiqa)</li>
+            <li>Aerobika (40 daqiqa)</li>
+            <li>Schayqali yurish (50 daqiqa)</li>
+            <li>Yugurish (50 daqiqa)</li>
+            <li>Velosiped haydash (65 daqiqa)</li>
+            <li>Suzish (40 daqiqa)</li>
+            <li>Arqon sakrash (35 daqiqa)</li>
+            <li>Tez yurish (60 daqiqa)</li>
+            <li>Zumba raqsi (50 daqiqa)</li>
+            <li>Interval yugurish (40 daqiqa)</li>
+            <li>Elliptik trenajor (50 daqiqa)</li>
+            <li>Aerobika (45 daqiqa)</li>
+            <li>Schayqali yurish (55 daqiqa)</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-2xl font-semibold mb-4">Kuch Mashqlari</h3>
+          <p class="mb-4">Mushaklarni mustahkamlash uchun mashqlar.</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Og‘irlik ko‘tarish (3 set)</li>
+            <li>Planka (3 daqiqa)</li>
+            <li>Squat (20 takrorlash)</li>
+            <li>Push-up (15 takrorlash)</li>
+            <li>Deadlift (3 set)</li>
+            <li>Lunges (20 takrorlash)</li>
+            <li>Bench press (3 set)</li>
+            <li>Pull-up (10 takrorlash)</li>
+            <li>Shoulder press (3 set)</li>
+            <li>Core mashqlari (20 daqiqa)</li>
+            <li>Og‘irlik ko‘tarish (4 set)</li>
+            <li>Planka (4 daqiqa)</li>
+            <li>Squat (25 takrorlash)</li>
+            <li>Push-up (20 takrorlash)</li>
+            <li>Deadlift (4 set)</li>
+            <li>Lunges (25 takrorlash)</li>
+            <li>Bench press (4 set)</li>
+            <li>Pull-up (12 takrorlash)</li>
+            <li>Shoulder press (4 set)</li>
+            <li>Core mashqlari (25 daqiqa)</li>
+            <li>Og‘irlik ko‘tarish (5 set)</li>
+            <li>Planka (5 daqiqa)</li>
+            <li>Squat (30 takrorlash)</li>
+            <li>Push-up (25 takrorlash)</li>
+            <li>Deadlift (5 set)</li>
+            <li>Lunges (30 takrorlash)</li>
+            <li>Bench press (5 set)</li>
+            <li>Pull-up (15 takrorlash)</li>
+            <li>Shoulder press (5 set)</li>
+            <li>Core mashqlari (30 daqiqa)</li>
+            <li>Og‘irlik ko‘tarish (6 set)</li>
+            <li>Planka (6 daqiqa)</li>
+            <li>Squat (35 takrorlash)</li>
+            <li>Push-up (30 takrorlash)</li>
+            <li>Deadlift (6 set)</li>
+            <li>Lunges (35 takrorlash)</li>
+            <li>Bench press (6 set)</li>
+            <li>Pull-up (18 takrorlash)</li>
+            <li>Shoulder press (6 set)</li>
+            <li>Core mashqlari (35 daqiqa)</li>
+            <li>Og‘irlik ko‘tarish (7 set)</li>
+            <li>Planka (7 daqiqa)</li>
+            <li>Squat (40 takrorlash)</li>
+            <li>Push-up (35 takrorlash)</li>
+            <li>Deadlift (7 set)</li>
+            <li>Lunges (40 takrorlash)</li>
+            <li>Bench press (7 set)</li>
+            <li>Pull-up (20 takrorlash)</li>
+            <li>Shoulder press (7 set)</li>
+            <li>Core mashqlari (40 daqiqa)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <button onclick="openExercisePlanModal()" class="bg-green-600 text-white px-6 py-3 rounded-full button-primary hover-scale">Mashqlar Rejasini Tuzish</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BMI Calculator Section -->
+  <section id="bmi" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 slide-in">BMI Kalkulyator</h2>
+      <p class="text-lg text-center mb-10 max-w-3xl mx-auto">Tana massasi indeksingizni hisoblang va sog‘ligingiz holatini bilib oling.</p>
+      <div class="max-w-md mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-2" for="height">Bo'yingiz (sm)</label>
+          <input type="number" id="height" class="w-full p-3 border rounded input-focus" placeholder="Masalan, 170">
+        </div>
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-2" for="weight">Vazningiz (kg)</label>
+          <input type="number" id="weight" class="w-full p-3 border rounded input-focus" placeholder="Masalan, 70">
+        </div>
+        <button onclick="calculateBMI()" class="bg-green-600 text-white px-6 py-3 rounded-full button-primary w-full hover-scale">Hisoblash</button>
+        <p id="bmi-result" class="mt-6 text-lg font-semibold text-center"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motivation Section -->
+  <section id="motivation" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12 slide-in">Haftalik Motivatsiya</h2>
+      <p class="text-lg text-center mb-10 max-w-3xl mx-auto">Har hafta yangi ilhomlantiruvchi maslahatlar oling va maqsadingizga erishing.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">1-kun: Boshlang!</h3>
+          <p>Kichik qadamlar bilan katta o‘zgarishlarga erishing.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">2-kun: Davom eting!</h3>
+          <p>Har bir harakat sizni maqsadingizga yaqinlashtiradi.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">3-kun: Qat'iyat</h3>
+          <p>Muvaffaqiyat qat‘iyat bilan keladi.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">4-kun: Muvozanat</h3>
+          <p>Hayotingizda muvozanatni saqlang.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">5-kun: Ishoning</h3>
+          <p>O‘zingizga ishonish muvaffaqiyatning kalitidir.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">6-kun: Dam oling</h3>
+          <p>Dam olish - sog‘lom hayotning bir qismidir.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">7-kun: Faxrlaning</h3>
+          <p>Har bir yutuq bilan faxrlaning!</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">8-kun: Yangi imkoniyatlar</h3>
+          <p>Har kuni yangi imkoniyatlar bilan boshlanadi.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">9-kun: Maqsad sari</h3>
+          <p>Maqsadingizni doimo yodda tuting.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">10-kun: Harakatlaning</h3>
+          <p>Harakatda bo‘ling, tinmay oldinga intiling.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">11-kun: Iroda kuchi</h3>
+          <p>Iroda kuchi bilan hamma narsa mumkin.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">12-kun: O‘zgarish</h3>
+          <p>O‘zgarishlarni qabul qiling va ulardan quvvat oling.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">13-kun: Muvaffaqiyat</h3>
+          <p>Har bir kichik yutuq muvaffaqiyatdir.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">14-kun: O‘sish</h3>
+          <p>Har kuni o‘zingizni rivojlantiring.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">15-kun: Ijobiylik</h3>
+          <p>Ijobiy fikrlash hayotingizni o‘zgartiradi.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">16-kun: Kuchli bo‘ling</h3>
+          <p>Siz o‘ylagandan ham kuchlisiz.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">17-kun: Intizom</h3>
+          <p>Intizom muvaffaqiyatning asosidir.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">18-kun: Maqsadlar</h3>
+          <p>Maqsadlaringizni aniq belgilang.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">19-kun: Motivatsiya</h3>
+          <p>Ichki motivatsiyangizni toping.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">20-kun: Qadamlar</h3>
+          <p>Har bir qadam muhimdir.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">21-kun: O‘zingizga vaqt</h3>
+          <p>O‘zingizga vaqt ajrating.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">22-kun: O‘rganish</h3>
+          <p>Har kuni yangi narsa o‘rganing.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">23-kun: Jasorat</h3>
+          <p>Jasorat bilan oldinga intiling.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">24-kun: Imkoniyat</h3>
+          <p>Har bir imkoniyatni qo‘ldan boy bermang.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">25-kun: Iroda</h3>
+          <p>Iroda kuchi bilan chegaralarni yeng.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">26-kun: Seving</h3>
+          <p>O‘zingizni va hayotingizni seving.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">27-kun: Harakat</h3>
+          <p>Harakat qilmasangiz, o‘zgarish bo‘lmaydi.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">28-kun: Maqsad</h3>
+          <p>Maqsadingizga sodiq qoling.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">29-kun: O‘zgarish</h3>
+          <p>O‘zgarishdan qo‘rqmang.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale card">
+          <h3 class="text-xl font-semibold mb-4">30-kun: Muvaffaqiyat</h3>
+          <p>Muvaffaqiyat sizning qo‘lingizda!</p>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <button onclick="showMotivation()" class="bg-green-600 text-white px-6 py-3 rounded-full button-primary hover-scale">Yangi Motivatsiya</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-green-600 to-green-800 text-white p-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-lg">&copy; 2025 Sog'lom Hayot. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <!-- Modal for Meal Plan -->
+  <div id="mealPlanModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-2xl font-bold mb-4">Ovqatlanish Rejasi</h2>
+      <div id="mealPlanResult" class="mb-4"></div>
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2" for="goal">Maqsadingiz</label>
+        <select id="goal" class="w-full p-3 border rounded input-focus">
+          <option value="weightLoss">Ozish</option>
+          <option value="weightGain">Semirish</option>
+          <option value="healthy">Sog'lom turmush</option>
+        </select>
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button onclick="generateMealPlan()" class="bg-green-600 text-white px-4 py-2 rounded button-primary">Reja Yaratish</button>
+        <button onclick="closeMealPlanModal()" class="bg-red-500 text-white px-4 py-2 rounded button-primary">Yopish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Exercise Plan -->
+  <div id="exercisePlanModal" class="modal">
+    <div class="modal-content">
+      <h2 class="text-2xl font-bold mb-4">Mashqlar Rejasi</h2>
+      <div id="exercisePlanResult" class="mb-4"></div>
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2" for="exerciseType">Mashq turi</label>
+        <select id="exerciseType" class="w-full p-3 border rounded input-focus">
+          <option value="cardio">Kardio</option>
+          <option value="strength">Kuch mashqlari</option>
+        </select>
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button onclick="generateExercisePlan()" class="bg-green-600 text-white px-4 py-2 rounded button-primary">Reja Yaratish</button>
+        <button onclick="closeExercisePlanModal()" class="bg-red-500 text-white px-4 py-2 rounded button-primary">Yopish</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Til sozlamalari uchun JSON ob'ektlari
+    const translations = {
+      uz: {
+        home: "Bosh sahifa",
+        nutrition: "Ovqatlanish",
+        exercise: "Mashqlar",
+        bmi: "BMI Kalkulyator",
+        motivation: "Motivatsiya",
+        welcome: "Sog'lom Hayotga Xush Kelibsiz!",
+        welcome_sub: "To'g'ri ovqatlanish, muntazam mashqlar va motivatsiya bilan sog'lom turmush tarzini boshlang.",
+        nutrition_title: "Ovqatlanish Rejasi",
+        nutrition_sub: "Sizning maqsadingizga mos shaxsiy ovqatlanish rejasini tuzing.",
+        exercise_title: "Mashqlar Dasturi",
+        exercise_sub: "Sog'lom bo'lish uchun kundalik mashqlar dasturini sinab ko'ring.",
+        bmi_title: "BMI Kalkulyator",
+        bmi_sub: "Tana massasi indeksingizni hisoblang va sog'ligingiz holatini bilib oling.",
+        motivation_title: "Haftalik Motivatsiya",
+        motivation_sub: "Har hafta yangi ilhomlantiruvchi maslahatlar oling va maqsadingizga erishing.",
+        footer: "&copy; 2025 Sog'lom Hayot. Barcha huquqlar himoyalangan.",
+        meal_plan: "Ovqatlanish rejasi tayyor!",
+        exercise_plan: "Mashqlar rejasi tayyor!",
+        close: "Yopish",
+        generate_plan: "Reja Yaratish",
+        goal: "Maqsadingiz",
+        weightLoss: "Ozish",
+        weightGain: "Semirish",
+        healthy: "Sog'lom turmush",
+        exerciseType: "Mashq turi",
+        cardio: "Kardio",
+        strength: "Kuch mashqlari",
+        bmi_result: {
+          underweight: "Kam vazn",
+          normal: "Normal vazn",
+          overweight: "Ortiqcha vazn",
+          obese: "Semizlik"
+        }
+      },
+      ru: {
+        home: "Главная",
+        nutrition: "Питание",
+        exercise: "Упражнения",
+        bmi: "Калькулятор ИМТ",
+        motivation: "Мотивация",
+        welcome: "Добро пожаловать в Здоровую Жизнь!",
+        welcome_sub: "Начните здоровый образ жизни с правильного питания, регулярных упражнений и мотивации.",
+        nutrition_title: "План питания",
+        nutrition_sub: "Составьте персональный план питания в соответствии с вашими целями.",
+        exercise_title: "Программа упражнений",
+        exercise_sub: "Попробуйте ежедневную программу упражнений для здоровья.",
+        bmi_title: "Калькулятор ИМТ",
+        bmi_sub: "Рассчитайте свой индекс массы тела и узнайте состояние здоровья.",
+        motivation_title: "Еженедельная мотивация",
+        motivation_sub: "Получайте новые вдохновляющие советы каждую неделю и достигайте своих целей.",
+        footer: "&copy; 2025 Здоровая Жизнь. Все права защищены.",
+        meal_plan: "План питания готов!",
+        exercise_plan: "Программа упражнений готова!",
+        close: "Закрыть",
+        generate_plan: "Создать план",
+        goal: "Ваша цель",
+        weightLoss: "Похудение",
+        weightGain: "Набор веса",
+        healthy: "Здоровый образ жизни",
+        exerciseType: "Тип упражнений",
+        cardio: "Кардио",
+        strength: "Силовые упражнения",
+        bmi_result: {
+          underweight: "Недостаточный вес",
+          normal: "Нормальный вес",
+          overweight: "Избыточный вес",
+          obese: "Ожирение"
+        }
+      },
+      en: {
+        home: "Home",
+        nutrition: "Nutrition",
+        exercise: "Exercises",
+        bmi: "BMI Calculator",
+        motivation: "Motivation",
+        welcome: "Welcome to Healthy Life!",
+        welcome_sub: "Start a healthy lifestyle with proper nutrition, regular exercise, and motivation.",
+        nutrition_title: "Nutrition Plan",
+        nutrition_sub: "Create a personalized nutrition plan tailored to your goals.",
+        exercise_title: "Exercise Program",
+        exercise_sub: "Try a daily exercise program to stay healthy.",
+        bmi_title: "BMI Calculator",
+        bmi_sub: "Calculate your Body Mass Index and learn about your health status.",
+        motivation_title: "Weekly Motivation",
+        motivation_sub: "Get new inspirational tips every week and achieve your goals.",
+        footer: "&copy; 2025 Healthy Life. All rights reserved.",
+        meal_plan: "Meal plan generated!",
+        exercise_plan: "Exercise plan generated!",
+        close: "Close",
+        generate_plan: "Generate Plan",
+        goal: "Your Goal",
+        weightLoss: "Weight Loss",
+        weightGain: "Weight Gain",
+        healthy: "Healthy Lifestyle",
+        exerciseType: "Exercise Type",
+        cardio: "Cardio",
+        strength: "Strength Training",
+        bmi_result: {
+          underweight: "Underweight",
+          normal: "Normal weight",
+          overweight: "Overweight",
+          obese: "Obese"
+        }
+      }
+    };
+
+    // Ovqatlanish rejasi ma'lumotlari
+    const mealPlans = {
+      weightLoss: [
+        { day: "Dushanba", breakfast: "Yulaf, olma, 1 stakan suv", lunch: "Tovuq va sabzavotli salat", dinner: "Baliq va brokkoli" },
+        { day: "Seshanba", breakfast: "Tuxum va avokado", lunch: "Guruch va sabzavotlar", dinner: "Kam yog'li yogurt" },
+        { day: "Chorshanba", breakfast: "Meva smuzisi", lunch: "Tovuq va quinoa", dinner: "Sabzavotli sho'rva" },
+        { day: "Payshanba", breakfast: "Yulaf va yong'oq", lunch: "Baliq va salat", dinner: "Tuxum va sabzavotlar" },
+        { day: "Juma", breakfast: "Yog'siz yogurt va meva", lunch: "Guruch va tovuq", dinner: "Brokkoli va baliq" },
+        { day: "Shanba", breakfast: "Tuxum va non", lunch: "Sabzavotli salat", dinner: "Kam yog'li pishloq" },
+        { day: "Yakshanba", breakfast: "Meva va yulaf", lunch: "Tovuq va sabzavotlar", dinner: "Sho'rva va salat" }
+      ],
+      weightGain: [
+        { day: "Dushanba", breakfast: "Protein kokteyli, banana", lunch: "Go'sht va guruch", dinner: "Tuxum va kartoshka" },
+        { day: "Seshanba", breakfast: "Yong'oq yog'i va non", lunch: "Tovuq va makaron", dinner: "Baliq va quinoa" },
+        { day: "Chorshanba", breakfast: "Tuxum va pishloq", lunch: "Go'sht va kartoshka", dinner: "Protein smuzisi" },
+        { day: "Payshanba", breakfast: "Yulaf va yong'oq", lunch: "Tovuq va guruch", dinner: "Baliq va sabzavotlar" },
+        { day: "Juma", breakfast: "Protein kokteyli", lunch: "Makaron va go'sht", dinner: "Tuxum va avokado" },
+        { day: "Shanba", breakfast: "Yong'oq yog'i va meva", lunch: "Tovuq va quinoa", dinner: "Baliq va kartoshka" },
+        { day: "Yakshanba", breakfast: "Tuxum va non", lunch: "Go'sht va guruch", dinner: "Protein smuzisi" }
+      ],
+      healthy: [
+        { day: "Dushanba", breakfast: "Yulaf va meva", lunch: "Baliq va sabzavotlar", dinner: "Quinoa va salat" },
+        { day: "Seshanba", breakfast: "Tuxum va avokado", lunch: "Tovuq va guruch", dinner: "Sabzavotli sho'rva" },
+        { day: "Chorshanba", breakfast: "Meva smuzisi", lunch: "Kurka go'shti va salat", dinner: "Baliq va brokkoli" },
+        { day: "Payshanba", breakfast: "Yog'siz yogurt", lunch: "Guruch va sabzavotlar", dinner: "Tuxum va salat" },
+        { day: "Juma", breakfast: "Jo'xori va yong'oq", lunch: "Tovuq va quinoa", dinner: "Kam yog'li pishloq" },
+        { day: "Shanba", breakfast: "Meva va yulaf", lunch: "Baliq va guruch", dinner: "Sabzavotli salat" },
+        { day: "Yakshanba", breakfast: "Tuxum va non", lunch: "Tovuq va sabzavotlar", dinner: "Sho'rva va salat" }
+      ]
+    };
+
+    // Mashqlar rejasi ma'lumotlari
+    const exercisePlans = {
+      cardio: [
+        { day: "Dushanba", exercise: "Yugurish", duration: "30 min" },
+        { day: "Seshanba", exercise: "Velosiped haydash", duration: "45 min" },
+        { day: "Chorshanba", exercise: "Suzish", duration: "20 min" },
+        { day: "Payshanba", exercise: "Arqon sakrash", duration: "15 min" },
+        { day: "Juma", exercise: "Tez yurish", duration: "40 min" },
+        { day: "Shanba", exercise: "Zumba raqsi", duration: "30 min" },
+        { day: "Yakshanba", exercise: "Interval yugurish", duration: "20 min" }
+      ],
+      strength: [
+        { day: "Dushanba", exercise: "Og'irlik ko'tarish", duration: "45 min" },
+        { day: "Seshanba", exercise: "Planka", duration: "3 min" },
+        { day: "Chorshanba", exercise: "Squat", duration: "20 min" },
+        { day: "Payshanba", exercise: "Push-up", duration: "15 min" },
+        { day: "Juma", exercise: "Deadlift", duration: "30 min" },
+        { day: "Shanba", exercise: "Lunges", duration: "20 min" },
+        { day: "Yakshanba", exercise: "Bench press", duration: "30 min" }
+      ]
+    };
+
+    // Motivatsion xabarlar
+    const motivationMessages = [
+      "Kichik qadamlar bilan katta yutuqlarga erishing!",
+      "Har bir harakat sizni maqsadingizga yaqinlashtiradi.",
+      "Muvaffaqiyat qat’iyat bilan keladi.",
+      "Hayotingizda muvozanatni saqlang.",
+      "O‘zingizga ishonish muvaffaqiyatning kalitidir.",
+      "Dam olish - sog‘lom hayotning bir qismidir.",
+      "Har bir yutuq bilan faxrlaning!",
+      "Har kuni yangi imkoniyatlar bilan boshlanadi.",
+      "Maqsadingizni doimo yodda tuting.",
+      "Harakatda bo‘ling, tinmay oldinga intiling.",
+      "Iroda kuchi bilan hamma narsa mumkin.",
+      "O‘zgarishlarni qabul qiling va ulardan quvvat oling.",
+      "Har bir kichik yutuq muvaffaqiyatdir.",
+      "Har kuni o‘zingizni rivojlantiring.",
+      "Ijobiy fikrlash hayotingizni o‘zgartiradi.",
+      "Siz o‘ylagandan ham kuchlisiz.",
+      "Intizom muvaffaqiyatning asosidir.",
+      "Maqsadlaringizni aniq belgilang.",
+      "Ichki motivatsiyangizni toping.",
+      "Har bir qadam muhimdir.",
+      "O‘zingizga vaqt ajrating.",
+      "Har kuni yangi narsa o‘rganing.",
+      "Jasorat bilan oldinga intiling.",
+      "Har bir imkoniyatni qo‘ldan boy bermang.",
+      "Iroda kuchi bilan chegaralarni yeng.",
+      "O‘zingizni va hayotingizni seving.",
+      "Harakat qilmasangiz, o‘zgarish bo‘lmaydi.",
+      "Maqsadingizga sodiq qoling.",
+      "O‘zgarishdan qo‘rqmang.",
+      "Muvaffaqiyat sizning qo‘lingizda!"
+    ];
+
+    // Tilni o'zgartirish funksiyasi
+    function updateLanguage() {
+      const lang = document.getElementById('language').value;
+      document.querySelector('nav a[href="#home"]').textContent = translations[lang].home;
+      document.querySelector('nav a[href="#nutrition"]').textContent = translations[lang].nutrition;
+      document.querySelector('nav a[href="#exercise"]').textContent = translations[lang].exercise;
+      document.querySelector('nav a[href="#bmi"]').textContent = translations[lang].bmi;
+      document.querySelector('nav a[href="#motivation"]').textContent = translations[lang].motivation;
+      document.querySelector('#home h2').textContent = translations[lang].welcome;
+      document.querySelector('#home p').textContent = translations[lang].welcome_sub;
+      document.querySelector('#nutrition h2').textContent = translations[lang].nutrition_title;
+      document.querySelector('#nutrition p').textContent = translations[lang].nutrition_sub;
+      document.querySelector('#exercise h2').textContent = translations[lang].exercise_title;
+      document.querySelector('#exercise p').textContent = translations[lang].exercise_sub;
+      document.querySelector('#bmi h2').textContent = translations[lang].bmi_title;
+      document.querySelector('#bmi p').textContent = translations[lang].bmi_sub;
+      document.querySelector('#motivation h2').textContent = translations[lang].motivation_title;
+      document.querySelector('#motivation p').textContent = translations[lang].motivation_sub;
+      document.querySelector('footer p').textContent = translations[lang].footer;
+      document.querySelector('#mealPlanModal h2').textContent = translations[lang].nutrition_title;
+      document.querySelector('#mealPlanModal label[for="goal"]').textContent = translations[lang].goal;
+      document.querySelector('#mealPlanModal select#goal option[value="weightLoss"]').textContent = translations[lang].weightLoss;
+      document.querySelector('#mealPlanModal select#goal option[value="weightGain"]').textContent = translations[lang].weightGain;
+      document.querySelector('#mealPlanModal select#goal option[value="healthy"]').textContent = translations[lang].healthy;
+      document.querySelector('#mealPlanModal button[onclick="generateMealPlan()"]').textContent = translations[lang].generate_plan;
+      document.querySelector('#mealPlanModal button[onclick="closeMealPlanModal()"]').textContent = translations[lang].close;
+      document.querySelector('#exercisePlanModal h2').textContent = translations[lang].exercise_title;
+      document.querySelector('#exercisePlanModal label[for="exerciseType"]').textContent = translations[lang].exerciseType;
+      document.querySelector('#exercisePlanModal select#exerciseType option[value="cardio"]').textContent = translations[lang].cardio;
+      document.querySelector('#exercisePlanModal select#exerciseType option[value="strength"]').textContent = translations[lang].strength;
+      document.querySelector('#exercisePlanModal button[onclick="generateExercisePlan()"]').textContent = translations[lang].generate_plan;
+      document.querySelector('#exercisePlanModal button[onclick="closeExercisePlanModal()"]').textContent = translations[lang].close;
+      document.querySelector('#bmi label[for="height"]').textContent = translations[lang].bmi_title.includes('BMI') ? 'Height (cm)' : 'Рост (см)';
+      document.querySelector('#bmi label[for="weight"]').textContent = translations[lang].bmi_title.includes('BMI') ? 'Weight (kg)' : 'Вес (кг)';
+      document.querySelector('#bmi button').textContent = translations[lang].bmi_title.includes('BMI') ? 'Calculate' : 'Рассчитать';
+    }
+
+    // BMI hisoblash
+    function calculateBMI() {
+      const height = parseFloat(document.getElementById('height').value);
+      const weight = parseFloat(document.getElementById('weight').value);
+      const lang = document.getElementById('language').value;
+      let result = '';
+
+      if (height > 0 && weight > 0) {
+        const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
+        if (bmi < 18.5) {
+          result = `${translations[lang].bmi_result.underweight}: ${bmi}`;
+        } else if (bmi >= 18.5 && bmi < 25) {
+          result = `${translations[lang].bmi_result.normal}: ${bmi}`;
+        } else if (bmi >= 25 && bmi < 30) {
+          result = `${translations[lang].bmi_result.overweight}: ${bmi}`;
+        } else {
+          result = `${translations[lang].bmi_result.obese}: ${bmi}`;
+        }
+        localStorage.setItem('bmiResult', JSON.stringify({ bmi, date: new Date().toLocaleDateString() }));
+      } else {
+        result = translations[lang].bmi_title.includes('BMI') ? 'Please enter valid height and weight' : 'Пожалуйста, введите корректный рост и вес';
+      }
+      document.getElementById('bmi-result').textContent = result;
+    }
+
+    // Ovqatlanish rejasini yaratish
+    function generateMealPlan() {
+      const goal = document.getElementById('goal').value;
+      const lang = document.getElementById('language').value;
+      const plans = mealPlans[goal];
+      let html = `<p>${translations[lang].meal_plan}</p><ul class="list-disc pl-5">`;
+      plans.forEach(plan => {
+        html += `<li><strong>${plan.day}:</strong> Nonushta: ${plan.breakfast}, Tushlik: ${plan.lunch}, Kechki ovqat: ${plan.dinner}</li>`;
+      });
+      html += '</ul>';
+      document.getElementById('mealPlanResult').innerHTML = html;
+      localStorage.setItem('mealPlan', JSON.stringify({ goal, plans }));
+    }
+
+    // Mashqlar rejasini yaratish
+    function generateExercisePlan() {
+      const exerciseType = document.getElementById('exerciseType').value;
+      const lang = document.getElementById('language').value;
+      const plans = exercisePlans[exerciseType];
+      let html = `<p>${translations[lang].exercise_plan}</p><ul class="list-disc pl-5">`;
+      plans.forEach(plan => {
+        html += `<li><strong>${plan.day}:</strong> ${plan.exercise} (${plan.duration})</li>`;
+      });
+      html += '</ul>';
+      document.getElementById('exercisePlanResult').innerHTML = html;
+      localStorage.setItem('exercisePlan', JSON.stringify({ exerciseType, plans }));
+    }
+
+    // Modal oynalarni ochish/yopish
+    function openMealPlanModal() {
+      document.getElementById('mealPlanModal').style.display = 'block';
+    }
+    function closeMealPlanModal() {
+      document.getElementById('mealPlanModal').style.display = 'none';
+    }
+    function openExercisePlanModal() {
+      document.getElementById('exercisePlanModal').style.display = 'block';
+    }
+    function closeExercisePlanModal() {
+      document.getElementById('exercisePlanModal').style.display = 'none';
+    }
+
+    // Tasodifiy motivatsion xabar
+    function showMotivation() {
+      const lang = document.getElementById('language').value;
+      const randomIndex = Math.floor(Math.random() * motivationMessages.length);
+      alert(motivationMessages[randomIndex]);
+    }
+
+    // Til o'zgartirilganda yangilash
+    document.getElementById('language').addEventListener('change', updateLanguage);
+
+    // Sahifa yuklanganda tilni yangilash
+    window.onload = () => {
+      updateLanguage();
+      const savedBMI = localStorage.getItem('bmiResult');
+      if (savedBMI) {
+        const { bmi, date } = JSON.parse(savedBMI);
+        const lang = document.getElementById('language').value;
+        let result = '';
+        if (bmi < 18.5) {
+          result = `${translations[lang].bmi_result.underweight}: ${bmi} (${date})`;
+        } else if (bmi >= 18.5 && bmi < 25) {
+          result = `${translations[lang].bmi_result.normal}: ${bmi} (${date})`;
+        } else if (bmi >= 25 && bmi < 30) {
+          result = `${translations[lang].bmi_result.overweight}: ${bmi} (${date})`;
+        } else {
+          result = `${translations[lang].bmi_result.obese}: ${bmi} (${date})`;
+        }
+        document.getElementById('bmi-result').textContent = result;
+      }
+    };
+  </script>
+</body>
+</html>
